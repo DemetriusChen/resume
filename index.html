@@ -84,8 +84,37 @@
         }
 
         .banner {
-            background: url("./images/rs-cover-2-2-1-1.jpg");
+            background: url("./images/rs-cover-2-2-1-1.jpg") center center;
+            background-size: cover;
             height: 517px;
+        }
+
+        .banner .mask {
+            height: 517px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        main .user-card {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        main .user-card .text .welcome{
+            position: relative;
+            padding:6px;
+            background: #e6686a;
+            text-align: center;
+        }
+        main .user-card .text .welcome .triangle{
+            position: absolute;
+            display: block;
+            top:100%;
+            left: 6px;
+            width:0px;
+            height:0px;
+            border: 10px solid transparent;
+            border-top-width: 0px;
+            border-left-color: #e6686a;
         }
     </style>
 </head>
@@ -113,29 +142,32 @@
     <!--<img src="#" alt="logo"/>-->
 
 </div>
-<div class="banner"></div>
+<div class="banner">
+    <div class="mask"></div>
+</div>
 <main>
-    <div class="card">
+    <div class="user-card">
         <div class="picture">
-            <img src="" alt="头像">
+            <img src="./images/startuper-1-299x347.jpg" alt="头像">
         </div>
         <div class="text">
-            <div class="profile">
-                <span class="welcome">Hello</span>
-                <h1>陈远</h1>
-                <p>前端开发工程师</p>
-                <hr>
-                <dl>
-                    <dt>年龄</dt>
-                    <dd>18</dd>
-                    <dt>所在城市</dt>
-                    <dd>东莞</dd>
-                    <dt>邮箱</dt>
-                    <dd>fangyinghang@foxmail.com</dd>
-                    <dt>手机</dt>
-                    <dd>13812345678</dd>
-                </dl>
-            </div>
+                <span class="welcome">
+                        Hello
+                    <span class="triangle"></span>
+                </span>
+            <h1>陈远</h1>
+            <p>前端开发工程师</p>
+            <hr>
+            <dl>
+                <dt>年龄</dt>
+                <dd>18</dd>
+                <dt>所在城市</dt>
+                <dd>东莞</dd>
+                <dt>邮箱</dt>
+                <dd>fangyinghang@foxmail.com</dd>
+                <dt>手机</dt>
+                <dd>13812345678</dd>
+            </dl>
             <footer class="media">
                 <a href="#"><img src="#" alt="..."></a>
                 <a href="#"><img src="#" alt="..."></a>
@@ -149,7 +181,7 @@
 
     </div>
 
-    <a class="button" href="#">下载 PDF 简历</a>
+    <a class="button" href="#" download="">下载 PDF 简历</a>
 
     <section>
         <h2>技能</h2>
