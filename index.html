@@ -10,11 +10,19 @@
         }
 
         body {
-            /*background: #000;*/
+            background: #f3f5f7;
         }
 
         a {
             text-decoration: none;
+        }
+
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
         }
 
         .clearfix::after {
@@ -96,7 +104,7 @@
 
         main .text-picture {
             padding: 56px 50px;
-            border: 1px solid red;
+            background: #ffffff;
         }
 
         main .text-picture .picture,
@@ -166,6 +174,31 @@
             border: none;
             border-top: 1px solid #ddd;
         }
+
+        main .user-card .media {
+            background: #e8676b;
+            text-align: center;
+        }
+
+        main .user-card .media a {
+            display: inline-block;
+            width: 60px;
+            margin: 8px 16px;
+            padding: 15px 0;
+            line-height: 30px;
+            border-radius: 50%;
+        }
+        main .user-card .media a:hover{
+            background: rgba(208,92,96,0.6);
+            transition: all .3s;
+        }
+
+        main .user-card .media svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            vertical-align: top;
+        }
     </style>
 </head>
 <body>
@@ -220,18 +253,40 @@
                     <dd>13812345678</dd>
                 </dl>
             </div>
-            <!--<footer class="media">-->
-            <!--<a href="#"><img src="#" alt="..."></a>-->
-            <!--<a href="#"><img src="#" alt="..."></a>-->
-            <!--<a href="#"><img src="#" alt="..."></a>-->
-            <!--<a href="#"><img src="#" alt="..."></a>-->
-            <!--<a href="#"><img src="#" alt="..."></a>-->
-            <!--<a href="#"><img src="#" alt="..."></a>-->
-            <!--<a href="#"><img src="#" alt="..."></a>-->
-            <!--</footer>-->
+
         </div>
-
-
+        <footer class="media">
+            <a href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-qq-copy"></use>
+                </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-wechat"></use>
+                </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            </a>
+            <a href="#">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-daorujianshu"></use>
+                </svg>
+            </a>
+        </footer>
     </div>
 
     <a class="button" href="#" download="">下载 PDF 简历</a>
@@ -272,4 +327,5 @@
 
 </main>
 </body>
+<script src="//at.alicdn.com/t/font_679460_anqasfqbbebi6bt9.js"></script>
 </html>
