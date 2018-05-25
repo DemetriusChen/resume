@@ -17,6 +17,14 @@
             text-decoration: none;
         }
 
+        ol, ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: normal;
+        }
+
         .icon {
             width: 1em;
             height: 1em;
@@ -100,6 +108,10 @@
         .banner .mask {
             height: 517px;
             background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        body > main {
+            margin-top: -340px;
         }
 
         main .text-picture {
@@ -188,8 +200,9 @@
             line-height: 30px;
             border-radius: 50%;
         }
-        main .user-card .media a:hover{
-            background: rgba(208,92,96,0.6);
+
+        main .user-card .media a:hover {
+            background: rgba(208, 92, 96, 0.6);
             transition: all .3s;
         }
 
@@ -198,6 +211,75 @@
             height: 30px;
             fill: white;
             vertical-align: top;
+        }
+
+        main .resumeDownload-wrapper {
+            margin: 35px 0;
+            text-align: center;
+        }
+
+        main .resumeDownload-btn {
+            display: inline-block;
+            line-height: 16px;
+            padding: 21px 55px;
+            border: 1px solid #cbcdcf;
+            color: #3d4451;
+            font-weight: bold;
+            font-family: Verdana, Geneva, sans-serif;
+            border-radius: 2px;
+            transition: box-shadow .3s;
+        }
+
+        main .resumeDownload-btn:hover {
+            -webkit-box-shadow: 10px 10px 20px -12px rgba(10, 9, 10, 0.51);
+            -moz-box-shadow: 10px 10px 20px -12px rgba(10, 9, 10, 0.51);
+            box-shadow: 10px 10px 20px -12px rgba(10, 9, 10, 0.51);
+        }
+
+        main .skills {
+            width: 960px;
+            margin: 0 auto;
+        }
+        main .skills h2{
+            text-align: center;
+            margin: 82px 0 32px;
+            font-weight: bold;
+        }
+
+        main .skills ol{
+            background: #ffffff;
+            padding: 42px 50px 18px;
+        }
+
+
+        main .skills ol li {
+            float: left;
+            /*padding-right:40px;*/
+            width: 48%;
+            box-sizing: border-box;
+        }
+        main .skills ol li:nth-child(even){
+            float: right;
+
+        }
+
+        main .skills ol li h3 {
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+
+        main .skills ol li .progressBar {
+            margin: 4px 0 40px;
+            height: 6px;
+            border-radius: 2px;
+            background: #fadfe0;
+        }
+
+        main .skills ol li .progressBar .progress {
+            background: #e45d64;
+            width: 50%;
+            height: 100%;
+            border-radius: 2px;
         }
     </style>
 </head>
@@ -288,18 +370,60 @@
             </a>
         </footer>
     </div>
-
-    <a class="button" href="#" download="">下载 PDF 简历</a>
-
-    <section>
+    <p class="resumeDownload-wrapper">
+        <a class="resumeDownload-btn" href="./resume.pdf" target="_blank" download>下载 PDF 简历</a>
+    </p>
+    <section class="skills">
         <h2>技能</h2>
-        <ol>
-            <li>HTML 5 &amp; CSS 3</li>
-            <li>JavaScript</li>
-            <li>jQuery</li>
-            <li>Vue</li>
-            <li>React</li>
-            <li>HTTP</li>
+        <ol class="clearfix">
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress"></div>
+                </div>
+            </li>
         </ol>
     </section>
     <section>
