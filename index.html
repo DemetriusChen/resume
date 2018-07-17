@@ -43,21 +43,102 @@
             clear: both;
         }
 
+        .site-welcome {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .loading {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            /*border: 1px solid red;*/
+        }
+
+        .site-welcome.active {
+            display: flex;
+        }
+
+        .loading::before, .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 50%;
+            -webkit-animation: animate;
+            -o-animation: animate;
+            animation: animate 1.5s linear infinite;
+        }
+
+        .loading::after {
+            animation-delay: 0.75s;
+        }
+
+        @keyframes animate {
+
+            0% {
+                width: 0px;
+                height: 0px;
+                opacity: .1;
+                background: black;
+
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+                background: black;
+            }
+
+        }
+
         /*css采用层级写法，逐层展开*/
         .topNavBar {
             position: fixed;
             top: 0;
             right: 0;
             width: 100%;
+            z-index: 1;
         }
 
         .topNavBar-inner {
-            padding: 0 16px;
+            padding: 25px 30px;
+        }
+
+        .topNavBar-inner.sticky {
+            padding: 15px 30px;
+            background: white;
+            -webkit-box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.25);
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.25);
+            -webkit-transition: all .6s;
+            -moz-transition: all .6s;
+            -ms-transition: all .3s;
+            -o-transition: all .6s;
+            transition: all .6s;
+        }
+
+        .topNavBar-inner .sticky .logo {
+            padding: 7px 0;
+        }
+
+        .topNavBar-inner.sticky nav ul li a {
+            color: #3d4451;
         }
 
         .topNavBar nav {
             float: right;
-            /*padding: 10px 0;*/
         }
 
         .topNavBar nav ul {
@@ -68,26 +149,57 @@
 
         .topNavBar nav ul li {
             float: left;
+            position: relative;
             margin: 10px 17px;
-            padding: 8px 0;
             border-top: 2px solid transparent;
             border-bottom: 2px solid transparent;
         }
 
-        .topNavBar nav ul li:hover {
-            border-top: 2px solid transparent;
-            border-bottom: 2px solid rgba(232, 103, 107, .5);
-        }
-
         .topNavBar nav ul li a {
+            position: relative;
             display: block;
+            padding-bottom: 3px;
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             font-weight: bold;
         }
 
+        .topNavBar nav ul li a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(232, 103, 107, .5);
+            animation: menuSlide .3s;
+        }
+
+        @keyframes menuSlide {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+
+        }
+
+        .topNavBar nav ul li .subMenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+
+        }
+
+        .topNavBar nav ul li .subMenu > li {
+            white-space: nowrap;
+            margin: 0;
+        }
+
         .logo {
-            padding: 15px 10px;
+            padding: 10px 0;
         }
 
         .logo span {
@@ -368,8 +480,11 @@
     </style>
 </head>
 <body>
+<div id="siteWelcome" class="site-welcome active">
+    <div class="loading"></div>
+</div>
 <div class="topNavBar">
-    <div class="topNavBar-inner clearfix">
+    <div id="topNavBar" class="topNavBar-inner clearfix">
         <a class="logo" href="#" alt="logo" style="float: left;">
             <span class="rs">RS</span>
             <span class="card">CARD</span>
@@ -379,8 +494,22 @@
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">SKILLS</a></li>
                 <li><a href="#">EXPERIENCE</a></li>
-                <li><a href="#">PRICING</a></li>
-                <li><a href="#">BLOG</a></li>
+                <li>
+                    <a href="#" class="menuTrigger">作品</a>
+                    <ul class="subMenu">
+                        <li>作品1</li>
+                        <li>作品2</li>
+                        <li>作品3</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menuTrigger">BLOG</a>
+                    <ul class="subMenu">
+                        <li>博客1</li>
+                        <li>博客2</li>
+                        <li>博客3</li>
+                    </ul>
+                </li>
                 <li><a href="#">CALENDAR</a></li>
                 <li><a href="#">CONTACT</a></li>
                 <li><a href="#">OTHER</a></li>
@@ -546,11 +675,47 @@
             </div>
             <div class="small" style=" left: 664px; top: 0;">
                 <img src="./images/portfolio/photo-1421757295538-9c80958e75b0-2-2-1-1-294x278.jpg" alt="作品3">
-
             </div>
         </div>
     </section>
 </main>
 </body>
 <script src="//at.alicdn.com/t/font_679460_anqasfqbbebi6bt9.js"></script>
+<script>
+    document.onreadystatechange = listen;//当页面加载状态改变的时调用listen方法
+    function listen() {
+        if (document.readyState == "complete") //判断页面加载状态
+        {
+            siteWelcome.classList.remove('active');
+
+        }
+    }
+
+    window.onscroll = function () {
+        var scrollY = window.scrollY;
+        if (scrollY > 0) {
+            topNavBar.classList.add('sticky')
+            // console.log(scrollY)
+        } else {
+            topNavBar.classList.remove('sticky')
+        }
+
+    }
+
+    let aTags = document.getElementsByClassName('menuTrigger');
+    // console.log(aTags)
+    for (let i = 0; i <= aTags.length; i++) {
+        // console.log(aTags[i])
+        aTags[i].onmouseenter = function (x) {
+            console.log(x.target)
+            console.log(x.currentTarget)
+        }
+        aTags[i].onmouseleave = function (x) {
+            console.log(x.target)
+            console.log(x.currentTarget)
+        }
+    }
+
+
+</script>
 </html>
