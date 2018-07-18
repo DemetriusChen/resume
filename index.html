@@ -524,7 +524,7 @@
         </a>
         <nav class="menu">
             <ul class="clearfix">
-                <li><a href="#">ABOUT</a></li>
+                <li><a href="#siteAbout">ABOUT</a></li>
                 <li><a href="#">SKILLS</a></li>
                 <li><a href="#">EXPERIENCE</a></li>
                 <li class="menuTrigger">
@@ -557,7 +557,7 @@
     <div class="mask"></div>
 </div>
 <main>
-    <div class="user-card">
+    <div id="siteAbout" class="user-card">
         <div class="text-picture clearfix">
             <div class="picture">
                 <img width="299" height="347" src="./images/startuper-1-299x347.jpg" alt="头像">
@@ -774,7 +774,28 @@
             // console.log(element)
             let offsetTop = element.offsetTop;
             // console.log(offsetTop)
-            window.scrollTo(0, offsetTop - 85)
+
+            let n = 25; //移动的次数
+            let duration = 500 / n;  //多少时间动一次
+            let currentTop = window.scrollY;
+            let targetTop = offsetTop - 80;
+            let distance = (targetTop - currentTop) / n  //每次移动到的距离
+            let j = 1;
+            // console.log(duration)
+            // console.log(currentTop)
+            // console.log(targetTop)
+            // console.log(offsetTop)
+            // console.log(distance)
+            // console.log(offsetTop)
+            let interval = setInterval(() => {
+                if (j === n) {
+                    window.clearInterval(interval)
+                    return
+                }
+                j = j + 1;
+                window.scrollTo(0, currentTop + distance * j)
+            }, duration)
+
 
         }
     }
