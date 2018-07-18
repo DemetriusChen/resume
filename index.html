@@ -164,7 +164,7 @@
             font-weight: bold;
         }
 
-        .topNavBar nav ul li a:hover::after {
+        .topNavBar nav ul li.active > a::after {
             content: '';
             position: absolute;
             bottom: 0px;
@@ -172,6 +172,17 @@
             width: 100%;
             height: 3px;
             background: rgba(232, 103, 107, .5);
+            animation: menuSlide .3s;
+        }
+
+        .topNavBar nav ul li a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(232, 103, 107, .8);
             animation: menuSlide .3s;
         }
 
@@ -186,16 +197,38 @@
         }
 
         .topNavBar nav ul li .subMenu {
+            display: none;
             position: absolute;
             top: 100%;
-            left: 0;
+            right: 0;
             background: white;
+            animation: subMenuSlide .3s;
+            -webkit-box-shadow: inset 0px 0px 5px #ddd;
+            -moz-box-shadow: inset 0px 0px 5px #ddd;
+            box-shadow: inset 0px 0px 5px #ddd;
+        }
 
+        @keyframes subMenuSlide {
+            0% {
+                margin-right: 100%;
+                opacity: .1;
+            }
+            100% {
+                margin-right: 0;
+                opacity: 1;
+            }
+        }
+
+        .topNavBar nav ul li.active > .subMenu {
+            display: block;
         }
 
         .topNavBar nav ul li .subMenu > li {
-            white-space: nowrap;
             margin: 0;
+            padding: 5px 15px;
+            white-space: nowrap;
+            color: #3c4451;
+
         }
 
         .logo {
@@ -489,25 +522,25 @@
             <span class="rs">RS</span>
             <span class="card">CARD</span>
         </a>
-        <nav>
+        <nav class="menu">
             <ul class="clearfix">
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">SKILLS</a></li>
                 <li><a href="#">EXPERIENCE</a></li>
-                <li>
-                    <a href="#" class="menuTrigger">作品</a>
+                <li class="menuTrigger">
+                    <a href="#siteSkills">技能</a>
                     <ul class="subMenu">
-                        <li>作品1</li>
-                        <li>作品2</li>
-                        <li>作品3</li>
+                        <li>技能</li>
+                        <li>技能</li>
+                        <li>技能</li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#" class="menuTrigger">BLOG</a>
+                <li class="menuTrigger">
+                    <a href="#siteWorks">作品</a>
                     <ul class="subMenu">
-                        <li>博客1</li>
-                        <li>博客2</li>
-                        <li>博客3</li>
+                        <li>作品</li>
+                        <li>作品</li>
+                        <li>作品</li>
                     </ul>
                 </li>
                 <li><a href="#">CALENDAR</a></li>
@@ -590,7 +623,7 @@
         hello，我是陈远， 前端工程师，资深前端讲师，大二在读学生。<br>
         技能：前端开发，Rails 开发，Node.js 开发
     </p>
-    <section class="skills">
+    <section id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -643,7 +676,7 @@
             </li>
         </ol>
     </section>
-    <section class="portfolio">
+    <section id="siteWorks" class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -690,9 +723,18 @@
 
         }
     }
+    window.onload=function(){
+        let scrollY = window.scrollY;
+        if (scrollY > 0) {
+            topNavBar.classList.add('sticky')
+            // console.log(scrollY)
+        } else {
+            topNavBar.classList.remove('sticky')
+        }
+    }
 
     window.onscroll = function () {
-        var scrollY = window.scrollY;
+        let scrollY = window.scrollY;
         if (scrollY > 0) {
             topNavBar.classList.add('sticky')
             // console.log(scrollY)
@@ -702,20 +744,43 @@
 
     }
 
-    let aTags = document.getElementsByClassName('menuTrigger');
-    // console.log(aTags)
-    for (let i = 0; i <= aTags.length; i++) {
-        // console.log(aTags[i])
-        aTags[i].onmouseenter = function (x) {
-            console.log(x.target)
-            console.log(x.currentTarget)
+
+    let liTags = document.getElementsByClassName('menuTrigger');
+
+    for (let i = 0; i <= liTags.length - 1; i++) {
+        // console.log(liTags[i])
+        liTags[i].onmouseenter = function (x) {
+            x.currentTarget.classList.add('active')
+            // console.log(liTags)
+
         }
-        aTags[i].onmouseleave = function (x) {
-            console.log(x.target)
-            console.log(x.currentTarget)
+
+        liTags[i].onmouseleave = function (x) {
+            x.currentTarget.classList.remove('active')
+        }
+
+    }
+
+
+    var aTags = document.querySelectorAll('nav.menu> ul > li > a');
+    for (let i = 0; i <= aTags.length - 1; i++) {
+        aTags[i].onclick = function (x) {
+            x.preventDefault()
+            let current = x.currentTarget
+            let href = current.getAttribute('href');
+            // console.log(href)
+            let element = document.querySelector(href)
+            // console.log(element)
+            let offsetTop = element.offsetTop ;
+            // console.log(offsetTop)
+            window.scrollTo(0,offsetTop-85)
+
         }
     }
 
 
 </script>
-</html>
+<!--<script>-->
+<!--alert()-->
+<!--</script>-->
+</html>          
