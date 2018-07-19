@@ -712,6 +712,7 @@
         </div>
     </section>
 </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 </body>
 <script src="//at.alicdn.com/t/font_679460_anqasfqbbebi6bt9.js"></script>
 <script>
@@ -775,26 +776,31 @@
             let offsetTop = element.offsetTop;
             // console.log(offsetTop)
 
-            let n = 25; //移动的次数
-            let duration = 500 / n;  //多少时间动一次
             let currentTop = window.scrollY;
             let targetTop = offsetTop - 80;
-            let distance = (targetTop - currentTop) / n  //每次移动到的距离
-            let j = 1;
-            // console.log(duration)
-            // console.log(currentTop)
-            // console.log(targetTop)
-            // console.log(offsetTop)
-            // console.log(distance)
-            // console.log(offsetTop)
-            let interval = setInterval(() => {
-                if (j === n) {
-                    window.clearInterval(interval)
-                    return
-                }
-                j = j + 1;
-                window.scrollTo(0, currentTop + distance * j)
-            }, duration)
+            let s = currentTop - targetTop;
+            let t = Math.abs((s / 100) * 300)  //时间跟着需要滚动的距离成倍增长, 以移动100px需要300ms为单位
+            if (t > 500) {
+                t = 500
+            }
+
+
+            function animate(time) {
+                requestAnimationFrame(animate);
+                TWEEN.update(time);
+            }
+
+            requestAnimationFrame(animate);
+
+            var coords = {y: currentTop}; // 设定当前的高度
+            var tween = new TWEEN.Tween(coords)
+                .to({y: targetTop}, t)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate(function () {
+                    // console.log(coords.y)
+                    window.scrollTo(0, coords.y)
+                })
+                .start();
 
 
         }
