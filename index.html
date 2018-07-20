@@ -164,6 +164,7 @@
             font-weight: bold;
         }
 
+        .topNavBar nav ul li.highlight > a::after,
         .topNavBar nav ul li.active > a::after {
             content: '';
             position: absolute;
@@ -171,7 +172,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: rgba(232, 103, 107, .5);
+            background: rgba(232, 103, 107, .8);
             animation: menuSlide .3s;
         }
 
@@ -182,7 +183,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: rgba(232, 103, 107, .8);
+            background: rgba(232, 103, 107);
             animation: menuSlide .3s;
         }
 
@@ -203,9 +204,9 @@
             right: 0;
             background: white;
             animation: subMenuSlide .3s;
-            -webkit-box-shadow: inset 0px 0px 5px #ddd;
-            -moz-box-shadow: inset 0px 0px 5px #ddd;
-            box-shadow: inset 0px 0px 5px #ddd;
+            -webkit-box-shadow: 6px 10px 28px -7px rgba(0,0,0,0.6);
+            -moz-box-shadow: 6px 10px 28px -7px rgba(0,0,0,0.6);
+            box-shadow: 6px 10px 28px -7px rgba(0,0,0,0.6);
         }
 
         @keyframes subMenuSlide {
@@ -241,11 +242,11 @@
         }
 
         .logo .rs {
-            color: rgba(232, 103, 107, .5);
+            color: rgba(232, 103, 107, .8);
         }
 
         .logo .card {
-            color: rgba(154, 157, 162, .5);
+            color: rgba(154, 157, 162, .8);
         }
 
         .banner {
@@ -525,8 +526,8 @@
         <nav class="menu">
             <ul class="clearfix">
                 <li><a href="#siteAbout">ABOUT</a></li>
-                <li><a href="#">SKILLS</a></li>
-                <li><a href="#">EXPERIENCE</a></li>
+                <!--<li><a href="#">SKILLS</a></li>-->
+                <!--<li><a href="#">EXPERIENCE</a></li>-->
                 <li class="menuTrigger">
                     <a href="#siteSkills">技能</a>
                     <ul class="subMenu">
@@ -543,10 +544,10 @@
                         <li>作品</li>
                     </ul>
                 </li>
-                <li><a href="#">CALENDAR</a></li>
-                <li><a href="#">CONTACT</a></li>
-                <li><a href="#">OTHER</a></li>
-                <li><a href="#">ALL DEMOS</a></li>
+                <!--<li><a href="#">CALENDAR</a></li>-->
+                <!--<li><a href="#">CONTACT</a></li>-->
+                <!--<li><a href="#">OTHER</a></li>-->
+                <!--<li><a href="#">ALL DEMOS</a></li>-->
             </ul>
         </nav>
     </div>
@@ -557,7 +558,7 @@
     <div class="mask"></div>
 </div>
 <main>
-    <div id="siteAbout" class="user-card">
+    <div id="siteAbout" class="user-card" data-mark>
         <div class="text-picture clearfix">
             <div class="picture">
                 <img width="299" height="347" src="./images/startuper-1-299x347.jpg" alt="头像">
@@ -623,7 +624,7 @@
         hello，我是陈远， 前端工程师，资深前端讲师，大二在读学生。<br>
         技能：前端开发，Rails 开发，Node.js 开发
     </p>
-    <section id="siteSkills" class="skills">
+    <section id="siteSkills" class="skills" data-mark>
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -676,7 +677,7 @@
             </li>
         </ol>
     </section>
-    <section id="siteWorks" class="portfolio">
+    <section id="siteWorks" class="portfolio" data-mark>
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -716,4 +717,4 @@
 </body>
 <script src="//at.alicdn.com/t/font_679460_anqasfqbbebi6bt9.js"></script>
 <script src="./js/index.js"></script>
-</html>          
+</html>     
