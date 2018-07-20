@@ -118,7 +118,7 @@
 
         .topNavBar-inner.sticky {
             padding: 15px 30px;
-            background: rgb(255,255,255);
+            background: rgb(255, 255, 255);
             -webkit-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.25);
             -moz-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.25);
             box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.25);
@@ -204,9 +204,9 @@
             right: 0;
             background: white;
             animation: subMenuSlide .3s;
-            -webkit-box-shadow: 6px 10px 28px -7px rgba(0,0,0,0.6);
-            -moz-box-shadow: 6px 10px 28px -7px rgba(0,0,0,0.6);
-            box-shadow: 6px 10px 28px -7px rgba(0,0,0,0.6);
+            -webkit-box-shadow: 6px 10px 28px -7px rgba(0, 0, 0, 0.6);
+            -moz-box-shadow: 6px 10px 28px -7px rgba(0, 0, 0, 0.6);
+            box-shadow: 6px 10px 28px -7px rgba(0, 0, 0, 0.6);
         }
 
         @keyframes subMenuSlide {
@@ -367,7 +367,7 @@
         }
 
         main .resumeDownload-wrapper {
-            margin: 35px 0;
+            margin: 135px 0;
             text-align: center;
         }
 
@@ -395,11 +395,10 @@
             height: 30px;
             line-height: 30px;
         }
-
         main .skills,
         main .portfolio {
             width: 960px;
-            margin: 0 auto;
+            margin: 200px auto;
         }
 
         main .skills h2,
@@ -437,6 +436,14 @@
             height: 6px;
             border-radius: 2px;
             background: #fadfe0;
+            overflow: hidden;
+        }
+        main .skills.offset ol li .progressBar .progress{
+            transform:translateX(-100%);
+        }
+        main .skills ol li .progressBar .progress{
+            transform:translateX(0);
+            transition: all 1s;
         }
 
         main .skills ol li .progressBar .progress {
@@ -511,6 +518,15 @@
         main .portfolio .jobs .small {
 
         }
+
+        [data-mark].offset {
+            transform: translateY(100px);
+        }
+
+        [data-mark] {
+            transform: translateY(0);
+            transition: all .3s;
+        }
     </style>
 </head>
 <body>
@@ -558,7 +574,7 @@
     <div class="mask"></div>
 </div>
 <main>
-    <div id="siteAbout" class="user-card" data-mark>
+    <div id="siteAbout" class="user-card offset" data-mark>
         <div class="text-picture clearfix">
             <div class="picture">
                 <img width="299" height="347" src="./images/startuper-1-299x347.jpg" alt="头像">
