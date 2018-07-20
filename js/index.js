@@ -8,7 +8,7 @@ function listen() {
 }
 setTimeout(() => {
     loadedAnimate()
-}, 100)
+}, 500)
 window.onload = function () {
     let scrollY = window.scrollY;
     if (scrollY > 0) {
