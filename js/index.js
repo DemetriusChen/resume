@@ -6,6 +6,7 @@ function listen() {
 
     }
 }
+
 setTimeout(() => {
     loadedAnimate()
 }, 500)
