@@ -532,10 +532,12 @@
             transform: translateY(0);
             transition: all .3s;
         }
-        .swiper-pagination-bullet{
+
+        .swiper-pagination-bullet {
             background: #ddd;
         }
-        .swiper-pagination-bullet-active{
+
+        .swiper-pagination-bullet-active {
             background: white;
         }
     </style>
@@ -707,25 +709,25 @@
     <section id="siteWorks" class="portfolio" data-mark>
         <h2>作品集</h2>
         <!--<nav>-->
-            <!--<ol class="clearfix">-->
-                <!--<li id="portfolio1">所有</li>-->
-                <!--<li id="portfolio2">框架</li>-->
-                <!--<li id="portfolio3">原生JS&amp;CSS</li>-->
-            <!--</ol>-->
-            <!--<div id="protfolioBar" class="bar status1">-->
-                <!--<div class="bar-inner"></div>-->
-            <!--</div>-->
-            <!--<script>-->
-                <!--portfolio1.onclick = function () {-->
-                    <!--protfolioBar.className = 'bar status1'-->
-                <!--}-->
-                <!--portfolio2.onclick = function () {-->
-                    <!--protfolioBar.className = 'bar status2'-->
-                <!--}-->
-                <!--portfolio3.onclick = function () {-->
-                    <!--protfolioBar.className = 'bar status3'-->
-                <!--}-->
-            <!--</script>-->
+        <!--<ol class="clearfix">-->
+        <!--<li id="portfolio1">所有</li>-->
+        <!--<li id="portfolio2">框架</li>-->
+        <!--<li id="portfolio3">原生JS&amp;CSS</li>-->
+        <!--</ol>-->
+        <!--<div id="protfolioBar" class="bar status1">-->
+        <!--<div class="bar-inner"></div>-->
+        <!--</div>-->
+        <!--<script>-->
+        <!--portfolio1.onclick = function () {-->
+        <!--protfolioBar.className = 'bar status1'-->
+        <!--}-->
+        <!--portfolio2.onclick = function () {-->
+        <!--protfolioBar.className = 'bar status2'-->
+        <!--}-->
+        <!--portfolio3.onclick = function () {-->
+        <!--protfolioBar.className = 'bar status3'-->
+        <!--}-->
+        <!--</script>-->
         <!--</nav>-->
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -736,6 +738,7 @@
             <div class="swiper-button-next"></div><!--右箭头-->
             <div class="swiper-pagination"></div> <!--分页器-->
         </div>
+
         <script>
             var mySwiper = new Swiper('.swiper-container', {
                 // width: 1520,
@@ -748,7 +751,7 @@
                 },
                 pagination: {
                     el: '.swiper-pagination',
-                    clickable :true,
+                    clickable: true,
                 },
             })
         </script>
@@ -764,9 +767,71 @@
         <!--</div>-->
         <!--</div>-->
     </section>
+    <section style="margin: 100px">
+        <ul id="messageList">
+
+        </ul>
+        <form id="postMessage" action="">
+            <input name="content" type="text"/>
+            <input value="提交" type="submit"/>
+        </form>
+    </section>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
 </body>
 <script src="//at.alicdn.com/t/font_679460_anqasfqbbebi6bt9.js"></script>
 <script src="./js/index.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
+<script>
+
+    var APP_ID = 'tjCUlB9CXjFJ8z3WwEyp3gNR-gzGzoHsz';
+    var APP_KEY = 'gg8Sl7uDml3GE7MABRKG2hri';
+
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    //
+    // var ex = AV.Object.extend('ex');
+    // var er = new ex();
+    // er.save({
+    //     words: 'Hello World!'
+    // }).then(function (object) {
+    //     console.log(object)
+    //     alert('LeanCloud Rocks!');
+    // })
+    var query = new AV.Query('Messages');
+    query.find().then(function (messages) {
+        console.log(messages)
+        console.log(messages[0].attributes)
+        console.log(messages[1].attributes)
+        let arr = messages.map((item) => item.attributes)
+        console.log(arr)
+        arr.forEach((item)=>{
+            let li =document.createElement('li')
+            li.innerText = item.content
+            let messageList = document.querySelector('#messageList')
+            messageList.appendChild(li)
+        })
+    }, function (error) {
+        // 异常处理
+    });
+
+
+    let myform = document.querySelector('#postMessage')
+    myform.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let content = myform.querySelector('input[name=content]').value
+        // console.log(content)
+        var messageObject = AV.Object.extend('Messages');
+        var message = new messageObject();
+        message.save({
+            content: content
+        }).then(function (object) {
+            // console.log(object)
+            alert('LeanCloud Rocks!');
+        })
+    })
+
+</script>
 </html>     
