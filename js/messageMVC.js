@@ -13,14 +13,14 @@
         //获取数据
         fetchData: function () {
             var query = new AV.Query('Messages');
-            return query.find() //Promise对象
+            return query.find()        //find自带Promise对象，要记得return Promise对象，不然外部无法调用
         },
 
         //保存数据
         saveData: function (name, content) {
             var messageObject = AV.Object.extend('Messages');
             var message = new messageObject();
-            message.save({
+            return message.save({     //save自带Promise对象，要记得return Promise对象，不然外部无法调用
                 name: name,
                 content: content
             })
@@ -44,11 +44,7 @@
 
         loadMessages: function () {
             this.model.fetchData().then((messages) => {
-                console.log(messages)
-                console.log(messages[0].attributes)
-                console.log(messages[1].attributes)
                 let arr = messages.map((item) => item.attributes)
-                console.log(arr)
                 arr.forEach((item) => {
                     let li = document.createElement('li')
                     li.innerText = `${item.name}:${item.content}`
@@ -63,16 +59,16 @@
             this.form.addEventListener('submit', (e) => {
                 e.preventDefault()
                 this.saveMessage()
+
             })
         },
         saveMessage: function () {
-            let myform = this.form
-            let name = myform.querySelector('input[name=name]').value
-            let content = myform.querySelector('input[name=content]').value
+            let myForm = this.form
+            let name = myForm.querySelector('input[name=name]').value
+            let content = myForm.querySelector('input[name=content]').value
             // console.log(content)
             this.model.saveData(name, content).then(function (object) {
-                // console.log(object)
-                // alert('LeanCloud Rocks!');
+
                 let li = document.createElement('li')
                 li.innerText = `${object.attributes.name}:${object.attributes.content}`
                 let messageList = document.querySelector('#messageList')
@@ -83,7 +79,6 @@
 
     //在controller中传入view和model对它们进行初始化
     controller.init(view, model)
-    // model().call()
 
 }.call()
 
