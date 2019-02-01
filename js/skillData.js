@@ -24,7 +24,7 @@ let vm = new Vue({
             },
             {
                 id: 5,
-                name: 'Express-Node.js',
+                name: 'Express',
                 percentage: 51
             },
             {
