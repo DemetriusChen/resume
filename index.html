@@ -562,7 +562,8 @@
             padding: 16px;
             border-bottom: 1px solid #ddd;
         }
-        form{
+
+        form {
             margin: 50px 0;
         }
 
@@ -579,6 +580,7 @@
             border-radius: .25rem;
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         }
+
         input[type="submit"] {
             display: inline-block;
             font-weight: 400;
@@ -594,7 +596,7 @@
             font-size: 1rem;
             line-height: 1.5;
             border-radius: .25rem;
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             color: #007bff;
             background-color: transparent;
             background-image: none;
@@ -663,13 +665,13 @@
                 <hr>
                 <dl class="clearfix">
                     <dt>年龄</dt>
-                    <dd>18</dd>
+                    <dd>22</dd>
                     <dt>所在城市</dt>
                     <dd>东莞</dd>
                     <dt>邮箱</dt>
-                    <dd>fangyinghang@foxmail.com</dd>
+                    <dd>easetreychen@gmail.com</dd>
                     <dt>手机</dt>
-                    <dd>13812345678</dd>
+                    <dd>15625570948</dd>
                 </dl>
             </div>
 
@@ -716,56 +718,18 @@
     </p>
     <section id="siteSkills" class="skills" data-mark>
         <h2>技能</h2>
-        <ol class="clearfix">
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-            <li>
-                <h3>JavaScript</h3>
-                <div class="progressBar">
-                    <div class="progress"></div>
-                </div>
-            </li>
-        </ol>
+        <!--用vue渲染数据-->
+        <section id="vue-skills">
+            <ol class="clearfix">
+                <li v-for="item in skills" :key="item.id">
+                    <h3 id="testTag">{{item.name}}</h3>
+                    <div class="progressBar">
+                        <div class="progress" :style="{width:item.percentage+'%'}"></div>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
     </section>
     <section id="siteWorks" class="portfolio" data-mark>
         <h2>作品集</h2>
@@ -847,4 +811,6 @@
 <script src="./js/index.js"></script>
 <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.10.0/dist/av-min.js"></script>
 <script src="./js/messageMVC.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.6.0-beta.3/vue.js"></script>
+<script src="./js/skillData.js"></script>
 </html>     
